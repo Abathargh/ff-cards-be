@@ -8,10 +8,10 @@ build_conf() {
   echo "Insert the port number: "
   read -r portNumber
   conf='{
-    "port": '$portNumber'
-  }'
+  "port": '$portNumber'
+}'
 
-  $conf > conf.json
+  echo "$conf" > conf.json
 }
 
 if [ "$#" -gt 1 ]; then
@@ -29,7 +29,7 @@ case $# in
     0) build_conf ù;;
     1)
       if [ "$1" = "default" ]; then
-          $default_conf > conf.json
+          echo "$default_conf" > conf.json
       else
         echo "expected 'default' arg, got $1"
       fi
