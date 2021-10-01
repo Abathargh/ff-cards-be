@@ -2,12 +2,18 @@
 
 package main
 
+import "os"
+
 func Build() error {
 	return nil
 }
 
 func Clean() error {
-	return nil
+	if err := os.Remove("ff-card-be.exe"); err != nil {
+		return err
+	}
+
+	return os.Remove("conf.json")
 }
 
 func Install() error {
