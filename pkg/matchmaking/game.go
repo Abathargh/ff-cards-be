@@ -1,5 +1,15 @@
 package matchmaking
 
+import "errors"
+
+const (
+	boardSize = 9
+)
+
+var (
+	errInvalidPoisition = errors.New("")
+)
+
 type Side uint
 
 const (
@@ -30,7 +40,7 @@ type Card struct {
 }
 
 type Board struct {
-	cardBoard []Card
+	cardBoard [9]*Card
 	turn      Side
 }
 
@@ -38,6 +48,14 @@ func NewBoard() *Board {
 	return &Board{
 		turn: Blue,
 	}
+}
+
+func (board *Board) Play(card Card, playerColor Side, where int) error {
+	//check this is ok
+	if where < 0 || where > boardSize || board.cardBoard[where] != nil {
+		return errInvalidPoisition
+	}
+
 }
 
 type Player struct {
